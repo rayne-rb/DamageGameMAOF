@@ -4,7 +4,7 @@ public static class DamageCalculator
 {
     public static float TrueDamageCalculator(float strength, float weaponWeight, PhysicalDamageTypes phystype = PhysicalDamageTypes.None)
     {
-        var trueDamage = strength * weaponWeight * 0.5f;
+        var trueDamage = (strength + weaponWeight) * 2f;
         
         // Low strength: 6 - 11, medium strength: 12 - 17, high strength: 18 - 24
         switch (phystype)
@@ -46,7 +46,7 @@ public static class DamageCalculator
 
     public static float AttackSpeedCalculator(float strength, float weaponWeight, float agility)
     {
-        var attackSpeed = (strength + agility) / (2f * weaponWeight);
+        var attackSpeed = (strength + 2f * agility) / (2f * weaponWeight);
 
         return attackSpeed;
     }

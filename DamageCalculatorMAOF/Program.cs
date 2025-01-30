@@ -7,9 +7,9 @@ string userInputString = string.Empty;
 
 //attacking character
 float weaponWeight = raikin.weaponWeight;
-float strength = raikin.strength;
-PhysicalDamageTypes weaponDamageType = raikin.physType;
-float agilityValue = raikin.agility;
+float strength = raikin.higherStrength;
+PhysicalDamageTypes weaponDamageType = raikin.spoonHeavy;
+float agilityValue = raikin.LowerAgility;
 
 //targeted character
 float heatlhValue = gulemark.hp;
@@ -35,6 +35,7 @@ while (heatlhValue > 0)
     Console.WriteLine($"Attacking Character Strength:               {strength}");
     Console.WriteLine($"Attacking Character Weapon Damage Type:     {weaponDamageType.ToString()}");
     Console.WriteLine($"Attacking Character Calculated Damage:      {damage}");
+    Console.WriteLine($"Attacking Character Agility:                {agilityValue}");
     Console.WriteLine($"Attacking Character Attack Speed:           {attackSpeed}");
     Console.WriteLine($"Attacking Character Damage Per Second:      {damagePerSecond}");
     Console.WriteLine("");
@@ -70,7 +71,6 @@ while (heatlhValue > 0)
             }
             else if (userInputString == "n")
             {
-                Console.WriteLine("Damage Calculator Stopped");
                 heatlhValue = 0;
                 userInputString = "Exit";
             }
