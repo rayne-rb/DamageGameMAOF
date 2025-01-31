@@ -1,19 +1,21 @@
 ﻿using DamageCalculatorMAOF.DamageGame;
 
-Gulemark gulemark = new Gulemark();
-Raikin raikin = new Raikin();
+Characters gulemark = new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser");
 
 string userInputString = string.Empty;
 
 //attacking character
-float weaponWeight = raikin.weaponWeight;
-float strength = raikin.higherStrength;
-PhysicalDamageTypes weaponDamageType = raikin.spoonHeavy;
-float agilityValue = raikin.LowerAgility;
+float weaponWeight = Raikin.weaponWeight;
+float strength = Raikin.higherStrength;
+PhysicalDamageTypes weaponDamageType = Raikin.spoonHeavy;
+float agilityValue = Raikin.LowerAgility;
+float characterWeight = Raikin.characterWeight;
+float characterForce = Raikin.characterForce;
+
 
 //targeted character
-float heatlhValue = gulemark.hp;
-float armourValue = gulemark.armour;
+float heatlhValue = Gulemark.hp;
+float armourValue = Gulemark.armour;
 
 while (heatlhValue > 0)
 {

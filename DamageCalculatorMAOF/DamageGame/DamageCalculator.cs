@@ -46,7 +46,7 @@ public static class DamageCalculator
 
     public static float AttackSpeedCalculator(float strength, float weaponWeight, float agility)
     {
-        var attackSpeed = (strength + 2f * agility) / (2f * weaponWeight);
+        var attackSpeed = (agility * strength) / (2f * weaponWeight);
 
         return attackSpeed;
     }
