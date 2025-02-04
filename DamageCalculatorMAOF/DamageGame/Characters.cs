@@ -58,7 +58,7 @@ public class Characters
 
     public float GetCharacterForce()
     {
-        float characterForce = characterWeight * strength;
+        float characterForce = characterWeight + strength;
         return characterForce;
     }
 
@@ -80,7 +80,8 @@ public class Characters
 
         Console.WriteLine($"Starting Health Points: {health}");
         Console.WriteLine($"Starting Armour Points: {armour}");
-        Console.WriteLine($"Character Weight:       {characterWeight}\n");
+        Console.WriteLine($"Character Weight:       {characterWeight}");
+        Console.WriteLine($"Character Force:       {GetCharacterForce()}\n");
 
         Console.WriteLine($"Weapon Name:            {weaponName}");
         Console.WriteLine($"Weapon Weight:          {weaponWeight}");

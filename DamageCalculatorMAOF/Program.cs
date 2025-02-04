@@ -1,7 +1,7 @@
 ﻿using DamageCalculatorMAOF.DamageGame;
 
 Characters gulemark = new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser", "Gulemark");
-Characters raikin = new Characters(80f, 30f, 30f, 18f, 12f, 13f, PhysicalDamageTypes.Chop, "War Spoon", "Raikin");
+Characters raikin = new Characters(80f, 30f, 30f, 12f, 12f, 13f, PhysicalDamageTypes.Slash, "War Spoon", "Raikin");
 
 string userInputString = string.Empty;
 
