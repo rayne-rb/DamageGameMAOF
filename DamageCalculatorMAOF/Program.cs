@@ -1,15 +1,28 @@
 ﻿using DamageCalculatorMAOF.DamageGame;
 
 Characters gulemark = new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser", "Gulemark");
-Characters raikin = new Characters(80f, 30f, 30f, 12f, 12f, 13f, PhysicalDamageTypes.Slash, "War Spoon", "Raikin");
+Characters raikin = new Characters(100f, 30f, 30f, 16f, 12f, 14f, PhysicalDamageTypes.Slash, "War Spoon", "Raikin");
+Characters thimble = new Characters(80f, 30f, 24f, 8f, 12f, 9f, PhysicalDamageTypes.Stab, "Throwing Needle", "Thimble");
+Characters jack = new Characters(150f, 80f, 37f, 10f, 7f, 8f, PhysicalDamageTypes.Blunt, "Jaffle Iron", "Jack the Jaffler");
 
 string userInputString = string.Empty;
 
 //Character 1
-gulemark.GetCharacterDetails();
+var character1 = raikin;
+character1.GetCharacterDetails();
 
 //Character 2
-raikin.GetCharacterDetails();
+var character2 = jack;
+character2.GetCharacterDetails();
+
+while (character1.health > 0 && character2.health > 0)
+{
+    Console.WriteLine("Would you like to Battle Characters? (y/n)");
+    userInputString = Console.ReadLine();
+    
+    
+}
+
 
 
 // //attacking character
