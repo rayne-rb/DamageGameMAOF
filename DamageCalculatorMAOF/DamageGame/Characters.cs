@@ -78,10 +78,10 @@ public class Characters
     {
         Console.WriteLine($"Character Name: {characterName}\n");
 
-        Console.WriteLine($"Starting Health Points: {health}");
-        Console.WriteLine($"Starting Armour Points: {armour}");
+        Console.WriteLine($"Health Points:          {health}");
+        Console.WriteLine($"Armour Points:          {armour}");
         Console.WriteLine($"Character Weight:       {characterWeight}");
-        Console.WriteLine($"Character Force:       {GetCharacterForce()}\n");
+        Console.WriteLine($"Character Force:        {GetCharacterForce()}\n");
 
         Console.WriteLine($"Weapon Name:            {weaponName}");
         Console.WriteLine($"Weapon Weight:          {weaponWeight}");

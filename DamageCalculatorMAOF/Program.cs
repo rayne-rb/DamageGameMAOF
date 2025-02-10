@@ -1,29 +1,97 @@
 ﻿using DamageCalculatorMAOF.DamageGame;
 
-Characters gulemark = new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser", "Gulemark");
+bool Cancelled = false;
+
+Characters gulemark =
+    new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser", "Gulemark");
 Characters raikin = new Characters(100f, 30f, 30f, 16f, 12f, 14f, PhysicalDamageTypes.Slash, "War Spoon", "Raikin");
 Characters thimble = new Characters(80f, 30f, 24f, 8f, 12f, 9f, PhysicalDamageTypes.Stab, "Throwing Needle", "Thimble");
-Characters jack = new Characters(150f, 80f, 37f, 10f, 7f, 8f, PhysicalDamageTypes.Blunt, "Jaffle Iron", "Jack the Jaffler");
+Characters jack = new Characters(150f, 80f, 37f, 10f, 7f, 8f, PhysicalDamageTypes.Blunt, "Jaffle Iron",
+    "Jack the Jaffler");
 
 string userInputString = string.Empty;
+bool battled = false;
 
 //Character 1
-var character1 = raikin;
-character1.GetCharacterDetails();
+var character1 = thimble;
+float remainingDamage1 = 0f;
+float ogArmour1 = character1.armour;
 
 //Character 2
 var character2 = jack;
-character2.GetCharacterDetails();
+float remainingDamage2 = 0f;
+float ogArmour2 = character2.armour;
 
 while (character1.health > 0 && character2.health > 0)
 {
-    Console.WriteLine("Would you like to Battle Characters? (y/n)");
-    userInputString = Console.ReadLine();
+    character1.GetCharacterDetails();
+
+    character2.GetCharacterDetails();
+
+    while (userInputString != "y" && userInputString != "n")
+    {
+        if (battled)
+        {
+            Console.WriteLine($"Battle Characters Again? (y/n)");
+        }
+        else
+        {
+            Console.WriteLine($"Battle Characters? (y/n)");
+        }
+
+        userInputString = Console.ReadLine();
+
+        if (!(userInputString == "y" || userInputString == "n"))
+            Console.WriteLine("Input Invalid");
+    }
+
+    if (userInputString == "n")
+    {
+        character1.health = 0;
+        character2.health = 0;
+        Cancelled = true;
+        Console.WriteLine("");
+        Console.WriteLine("Damage Calculator Stopped");
+    }
+
+    if (userInputString == "y")
+    {
+        ogArmour1 = character1.armour;
+        character1.armour = DamageCalculator.ApDamage(character2.GetTrueDamage(), character1.armour, character2.GetArDamageMod());
+        remainingDamage2 = DamageCalculator.CalculatedRemainingDamage(character2.GetTrueDamage(), ogArmour1, character2.GetArDamageMod());
+        character1.health = DamageCalculator.HpDamage(remainingDamage2, character1.health, character1.armour, character2.GetHpDamageMod());
+        
+        ogArmour2 = character2.armour;
+        character2.armour = DamageCalculator.ApDamage(character1.GetTrueDamage(), character2.armour, character1.GetArDamageMod());
+        remainingDamage1 = DamageCalculator.CalculatedRemainingDamage(character1.GetTrueDamage(), ogArmour2, character1.GetArDamageMod());
+        character2.health = DamageCalculator.HpDamage(remainingDamage1, character2.health, character2.armour, character1.GetHpDamageMod());
+    }
     
-    
+    userInputString = string.Empty;
 }
 
-
+if (!Cancelled)
+{
+    character1.GetCharacterDetails();
+    character2.GetCharacterDetails();
+    Console.WriteLine("");
+    if (character1.health > 0)
+    {
+        Console.WriteLine($"{character1.characterName} Wins!");
+    }
+    
+    if (character2.health > 0)
+    {
+        Console.WriteLine($"{character2.characterName} Wins!");
+    }
+    
+    if (character1.health == character2.health)
+    {
+        Console.WriteLine("It's a Draw!");
+    }
+    Console.WriteLine("");
+    Console.WriteLine("Damage Calculator Stopped");
+}
 
 // //attacking character
 // float weaponWeight = Raikin.weaponWeight;
