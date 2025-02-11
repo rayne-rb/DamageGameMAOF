@@ -8,39 +8,39 @@
 
 public class Characters
 {
-    public float health;
-    public float armour;
-    public float characterWeight;
-    public float strength;
-    public float agility;
-    public float weaponWeight;
-    public PhysicalDamageTypes weaponType;
-    public string weaponName;
-    public string characterName;
+    public float Health;
+    public float Armour;
+    public float CharacterWeight;
+    public float Strength;
+    public float Agility;
+    public float WeaponWeight;
+    public PhysicalDamageTypes WeaponType;
+    public string WeaponName;
+    public string CharacterName;
 
     public Characters(float hp, float ar, float cw, float st, float ag, float ww, PhysicalDamageTypes wt, string wn,
         string ch)
     {
-        health = hp;
-        armour = ar;
-        characterWeight = cw;
-        strength = st;
-        agility = ag;
-        weaponWeight = ww;
-        weaponType = wt;
-        weaponName = wn;
-        characterName = ch;
+        Health = hp;
+        Armour = ar;
+        CharacterWeight = cw;
+        Strength = st;
+        Agility = ag;
+        WeaponWeight = ww;
+        WeaponType = wt;
+        WeaponName = wn;
+        CharacterName = ch;
     }
 
     public float GetTrueDamage()
     {
-        float damage = DamageCalculator.TrueDamageCalculator(strength, weaponWeight, weaponType);
+        float damage = DamageCalculator.TrueDamageCalculator(Strength, WeaponWeight, WeaponType);
         return damage;
     }
 
     public float GetAttackSpeed()
     {
-        float atkSpeed = DamageCalculator.AttackSpeedCalculator(strength, weaponWeight, agility);
+        float atkSpeed = DamageCalculator.AttackSpeedCalculator(Strength, WeaponWeight, Agility);
         return atkSpeed;
     }
 
@@ -52,44 +52,44 @@ public class Characters
 
     public float GetMoveSpeed()
     {
-        float moveSpeed = (5f * agility) / characterWeight;
+        float moveSpeed = (5f * Agility) / CharacterWeight;
         return moveSpeed;
     }
 
     public float GetCharacterForce()
     {
-        float characterForce = characterWeight + strength;
+        float characterForce = CharacterWeight + Strength;
         return characterForce;
     }
 
     public float GetArDamageMod()
     {
-        float damageMod = DamageModifier.ApDamageModifier(weaponType);
+        float damageMod = DamageModifier.ApDamageModifier(WeaponType);
         return damageMod;
     }
 
     public float GetHpDamageMod()
     {
-        float damageMod = DamageModifier.HpDamageModifier(weaponType);
+        float damageMod = DamageModifier.HpDamageModifier(WeaponType);
         return damageMod;
     }
 
     public void GetCharacterDetails()
     {
-        Console.WriteLine($"Character Name: {characterName}\n");
+        Console.WriteLine($"Character Name: {CharacterName}\n");
 
-        Console.WriteLine($"Health Points:          {health}");
-        Console.WriteLine($"Armour Points:          {armour}");
-        Console.WriteLine($"Character Weight:       {characterWeight}");
+        Console.WriteLine($"Health Points:          {Health}");
+        Console.WriteLine($"Armour Points:          {Armour}");
+        Console.WriteLine($"Character Weight:       {CharacterWeight}");
         Console.WriteLine($"Character Force:        {GetCharacterForce()}\n");
 
-        Console.WriteLine($"Weapon Name:            {weaponName}");
-        Console.WriteLine($"Weapon Weight:          {weaponWeight}");
-        Console.WriteLine($"Strength:               {strength}");
-        Console.WriteLine($"Weapon Damage Type:     {weaponType.ToString()}");
+        Console.WriteLine($"Weapon Name:            {WeaponName}");
+        Console.WriteLine($"Weapon Weight:          {WeaponWeight}");
+        Console.WriteLine($"Strength:               {Strength}");
+        Console.WriteLine($"Weapon Damage Type:     {WeaponType.ToString()}");
         Console.WriteLine($"Calculated Damage:      {GetTrueDamage()}\n");
 
-        Console.WriteLine($"Agility:                {agility}");
+        Console.WriteLine($"Agility:                {Agility}");
         Console.WriteLine($"Movement Speed:         {GetMoveSpeed()}");
         Console.WriteLine($"Attack Speed:           {GetAttackSpeed()}");
         Console.WriteLine($"Damage Per Second:      {GetDps()}\n");

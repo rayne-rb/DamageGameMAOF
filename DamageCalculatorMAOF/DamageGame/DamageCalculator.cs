@@ -76,8 +76,8 @@ public static class DamageCalculator
     
     public static float ApDamage(float damage, float armour, float armourDamageModifier)
     {
-        var ogArmour = armour;
-        var newDamage = damage;
+        // var ogArmour = armour;
+        // var newDamage = damage;
     
         if (armour > 0)
         {

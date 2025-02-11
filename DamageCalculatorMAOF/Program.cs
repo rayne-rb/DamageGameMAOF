@@ -1,6 +1,6 @@
 ﻿using DamageCalculatorMAOF.DamageGame;
 
-bool Cancelled = false;
+bool cancelled = false;
 
 Characters gulemark =
     new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser", "Gulemark");
@@ -15,14 +15,14 @@ bool battled = false;
 //Character 1
 var character1 = thimble;
 float remainingDamage1 = 0f;
-float ogArmour1 = character1.armour;
+float ogArmour1 = character1.Armour;
 
 //Character 2
 var character2 = jack;
 float remainingDamage2 = 0f;
-float ogArmour2 = character2.armour;
+float ogArmour2 = character2.Armour;
 
-while (character1.health > 0 && character2.health > 0)
+while (character1.Health > 0 && character2.Health > 0)
 {
     character1.GetCharacterDetails();
 
@@ -47,45 +47,45 @@ while (character1.health > 0 && character2.health > 0)
 
     if (userInputString == "n")
     {
-        character1.health = 0;
-        character2.health = 0;
-        Cancelled = true;
+        character1.Health = 0;
+        character2.Health = 0;
+        cancelled = true;
         Console.WriteLine("");
         Console.WriteLine("Damage Calculator Stopped");
     }
 
     if (userInputString == "y")
     {
-        ogArmour1 = character1.armour;
-        character1.armour = DamageCalculator.ApDamage(character2.GetTrueDamage(), character1.armour, character2.GetArDamageMod());
+        ogArmour1 = character1.Armour;
+        character1.Armour = DamageCalculator.ApDamage(character2.GetTrueDamage(), character1.Armour, character2.GetArDamageMod());
         remainingDamage2 = DamageCalculator.CalculatedRemainingDamage(character2.GetTrueDamage(), ogArmour1, character2.GetArDamageMod());
-        character1.health = DamageCalculator.HpDamage(remainingDamage2, character1.health, character1.armour, character2.GetHpDamageMod());
+        character1.Health = DamageCalculator.HpDamage(remainingDamage2, character1.Health, character1.Armour, character2.GetHpDamageMod());
         
-        ogArmour2 = character2.armour;
-        character2.armour = DamageCalculator.ApDamage(character1.GetTrueDamage(), character2.armour, character1.GetArDamageMod());
+        ogArmour2 = character2.Armour;
+        character2.Armour = DamageCalculator.ApDamage(character1.GetTrueDamage(), character2.Armour, character1.GetArDamageMod());
         remainingDamage1 = DamageCalculator.CalculatedRemainingDamage(character1.GetTrueDamage(), ogArmour2, character1.GetArDamageMod());
-        character2.health = DamageCalculator.HpDamage(remainingDamage1, character2.health, character2.armour, character1.GetHpDamageMod());
+        character2.Health = DamageCalculator.HpDamage(remainingDamage1, character2.Health, character2.Armour, character1.GetHpDamageMod());
     }
     
     userInputString = string.Empty;
 }
 
-if (!Cancelled)
+if (!cancelled)
 {
     character1.GetCharacterDetails();
     character2.GetCharacterDetails();
     Console.WriteLine("");
-    if (character1.health > 0)
+    if (character1.Health > 0)
     {
-        Console.WriteLine($"{character1.characterName} Wins!");
+        Console.WriteLine($"{character1.CharacterName} Wins!");
     }
     
-    if (character2.health > 0)
+    if (character2.Health > 0)
     {
-        Console.WriteLine($"{character2.characterName} Wins!");
+        Console.WriteLine($"{character2.CharacterName} Wins!");
     }
     
-    if (character1.health == character2.health)
+    if (character1.Health == character2.Health)
     {
         Console.WriteLine("It's a Draw!");
     }
