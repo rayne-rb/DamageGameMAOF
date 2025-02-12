@@ -2,12 +2,21 @@ namespace DamageCalculatorMAOF.DamageGame;
 
 public class UserInputValidator
 {
-
-    public string ValidateInput(string input)
+    public bool ValidateInput(string input, List<string> validInputs)
     {
-        
-        
-        return input;
+        if (validInputs.Contains(input.ToLower()))
+        {
+            return true;
+        }
+        else if (input == "no invalid message")
+        {
+            return false;
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid input");
+            return false;
+        }
     }
     
     

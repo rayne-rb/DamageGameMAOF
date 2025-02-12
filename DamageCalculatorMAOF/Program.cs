@@ -2,6 +2,8 @@
 
 bool cancelled = false;
 
+UserInputValidator userInputValidator = new UserInputValidator();
+
 Characters gulemark =
     new Characters(320f, 40f, 60f, 18f, 5f, 15f, PhysicalDamageTypes.Blunt, "The Tenderiser", "Gulemark");
 Characters raikin = new Characters(100f, 30f, 30f, 16f, 12f, 14f, PhysicalDamageTypes.Slash, "War Spoon", "Raikin");
@@ -9,7 +11,7 @@ Characters thimble = new Characters(80f, 30f, 24f, 8f, 12f, 9f, PhysicalDamageTy
 Characters jack = new Characters(150f, 80f, 37f, 10f, 7f, 8f, PhysicalDamageTypes.Blunt, "Jaffle Iron",
     "Jack the Jaffler");
 
-string userInputString = string.Empty;
+string userInputString = "no invalid message";
 bool battled = false;
 
 //Character 1
@@ -28,7 +30,9 @@ while (character1.Health > 0 && character2.Health > 0)
 
     character2.GetCharacterDetails();
 
-    while (userInputString != "y" && userInputString != "n")
+    List<string> validInputs1 = ["y", "n"];
+
+    while (!userInputValidator.ValidateInput(userInputString, validInputs1))
     {
         if (battled)
         {
@@ -38,11 +42,8 @@ while (character1.Health > 0 && character2.Health > 0)
         {
             Console.WriteLine($"Battle Characters? (y/n)");
         }
-
+    
         userInputString = Console.ReadLine();
-
-        if (!(userInputString == "y" || userInputString == "n"))
-            Console.WriteLine("Input Invalid");
     }
 
     if (userInputString == "n")
@@ -67,7 +68,7 @@ while (character1.Health > 0 && character2.Health > 0)
         character2.Health = DamageCalculator.HpDamage(remainingDamage1, character2.Health, character2.Armour, character1.GetHpDamageMod());
     }
     
-    userInputString = string.Empty;
+    userInputString = "no invalid message";
 }
 
 if (!cancelled)
